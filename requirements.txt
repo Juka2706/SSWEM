@@ -1,0 +1,7 @@
+Flask
+Flask-WTF
+Flask-Limiter
+passlib
+pyotp
+qrcode[pil]
+bcrypt
