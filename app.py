@@ -24,31 +24,43 @@ class LoginForm(FlaskForm):
 
 def is_secure_password(pw):
     return (
-        len(pw) >= 8 and re.search(r"[A-Z]", pw) and re.search(r"[a-z]", pw) and re.search(r"[!@#$%^&*()]", pw)
+        len(pw) >= 8 and re.search(r"[A-Z]", pw) and re.search(r"[1-9]", pw) and re.search(r"[a-z]", pw) and re.search(r"[!@#$%^&*()]", pw)
     )
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
+    error = None
+
     if form.validate_on_submit():
-        username, password = form.username.data, form.password.data
+        username = form.username.data
+        password = form.password.data
+
         if get_user(username):
-            return "Benutzer existiert bereits."
-        if not is_secure_password(password):
-            return "Passwort zu schwach."
+            error = "Benutzername ist bereits vergeben."
+        elif not is_secure_password(password):
+            error = "Passwortanforderungen nicht erfüllt: Groß-/Kleinbuchstaben, Zahl, Sonderzeichen."
+
+        if error:
+            return render_template("register.html", form=form, error=error)
+
         otp_secret = pyotp.random_base32()
-        add_user(username, bcrypt.hash(password), otp_secret)
+        password_hash = bcrypt.hash(password)
+        add_user(username, password_hash, otp_secret)
         session["otp_secret"] = otp_secret
         session["username"] = username
-        return redirect("/qrcode")
+        return render_template("qrcode.html")
+
     return render_template("register.html", form=form)
+
+
 
 @app.route("/qrcode")
 def qrcode_route():
     otp_secret = session.get("otp_secret")
     username = session.get("username")
-    if not otp_secret:
-        return redirect("/register")
+    if not otp_secret or not username:
+        return redirect("/login")
     uri = pyotp.TOTP(otp_secret).provisioning_uri(name=username, issuer_name="SecureApp")
     img = qrcode.make(uri)
     buf = io.BytesIO()
@@ -56,18 +68,25 @@ def qrcode_route():
     buf.seek(0)
     return send_file(buf, mimetype='image/png')
 
+
 @limiter.limit("5 per minute")
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
+    error = None
+
     if form.validate_on_submit():
-        username, password = form.username.data, form.password.data
+        username = form.username.data
+        password = form.password.data
         user = get_user(username)
         if user and bcrypt.verify(password, user[1]):
             session["username"] = username
             return redirect("/2fa")
-        return "Login fehlgeschlagen."
-    return render_template("login.html", form=form)
+        else:
+            error = "Login fehlgeschlagen: Benutzername oder Passwort ist falsch."
+
+    return render_template("login.html", form=form, error=error)
+
 
 @app.route("/2fa", methods=["GET", "POST"])
 def two_factor():
@@ -75,9 +94,10 @@ def two_factor():
         code = request.form.get("code")
         user = get_user(session.get("username"))
         if pyotp.TOTP(user[2]).verify(code):
-            return "Erfolgreich eingeloggt"
+            return render_template("success.html")  # statt Rückgabe als Text
         return "Ungültiger Code"
     return render_template("2fa.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>2FA QR-Code</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .qr-container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        img {
+            margin: 1rem 0;
+        }
+        p {
+            font-size: 0.95rem;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-
+<div class="qr-container">
+    <h2>QR-Code für 2FA</h2>
+    <p>Scanne den QR-Code mit deiner Authenticator-App, um die Zwei-Faktor-Authentifizierung zu aktivieren.</p>
+    <img src="{{ url_for('qrcode_route') }}" alt="QR-Code">
+    <p><a href="{{ url_for('login') }}">Zur Login-Seite</a></p>
+</div>
 </body>
 </html>
