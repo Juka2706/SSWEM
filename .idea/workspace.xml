@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e2fc263-f48c-4191-a74e-b704bb36a817" name="Changes" comment="Created new folder and added all files into it">
-      <change afterPath="$PROJECT_DIR$/Backup/PostgreSQL Backup-Prozess – Ausführliche Beschreibung.md" afterDir="false" />
+    <list default="true" id="5e2fc263-f48c-4191-a74e-b704bb36a817" name="Changes" comment="Readme Name geaendert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2FA/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/2FA/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2FA/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/2FA/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2FA/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/2FA/users.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +98,10 @@
       <workItem from="1749563826420" duration="1235000" />
       <workItem from="1749579385472" duration="9000" />
       <workItem from="1749633290193" duration="1000" />
-      <workItem from="1749831884365" duration="211000" />
+      <workItem from="1749831884365" duration="544000" />
+      <workItem from="1749888706515" duration="74000" />
+      <workItem from="1749898344671" duration="1107000" />
+      <workItem from="1749991364530" duration="149000" />
     </task>
     <task id="LOCAL-00001" summary="Adding Repo Files">
       <option name="closed" value="true" />
@@ -122,7 +127,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747763722439</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Readme für Backup erstellt">
+      <option name="closed" value="true" />
+      <created>1749832124127</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749832124127</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Readme Name geaendert">
+      <option name="closed" value="true" />
+      <created>1749832381017</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1749832381017</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,9 +175,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding Repo Files" />
     <MESSAGE value="Created new folder and added all files into it" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created new folder and added all files into it" />
+    <MESSAGE value="Readme für Backup erstellt" />
+    <MESSAGE value="Readme Name geaendert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme Name geaendert" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SSWEM_2FA$app.coverage" NAME="app Coverage Results" MODIFIED="1747757995282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SSWEM_2FA$app.coverage" NAME="app Coverage Results" MODIFIED="1749898808123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/2FA" />
   </component>
 </project>

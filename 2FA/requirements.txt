@@ -2,6 +2,7 @@ Flask
 Flask-WTF
 Flask-Limiter
 passlib
+argon2-cffi
 pyotp
 qrcode[pil]
 bcrypt

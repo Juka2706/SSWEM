@@ -3,7 +3,7 @@ from flask import Flask, request, redirect, render_template, session, send_file
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length
-from passlib.hash import bcrypt
+from passlib.hash import argon2
 from db import init_db, add_user, get_user
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -45,7 +45,7 @@ def register():
             return render_template("register.html", form=form, error=error)
 
         otp_secret = pyotp.random_base32()
-        password_hash = bcrypt.hash(password)
+        password_hash = argon2.hash(password)
         add_user(username, password_hash, otp_secret)
         session["otp_secret"] = otp_secret
         session["username"] = username
@@ -79,7 +79,7 @@ def login():
         username = form.username.data
         password = form.password.data
         user = get_user(username)
-        if user and bcrypt.verify(password, user[1]):
+        if user and argon2.verify(password, user[1]):
             session["username"] = username
             return redirect("/2fa")
         else:
@@ -97,6 +97,11 @@ def two_factor():
             return render_template("success.html")  # statt Rückgabe als Text
         return "Ungültiger Code"
     return render_template("2fa.html")
+
+
+@app.route("/")
+def index():
+    return redirect("/login")
 
 
 if __name__ == "__main__":
