@@ -213,7 +213,7 @@ Alle Aktionen (inkl. Fehler) werden in eine Logdatei geschrieben: `~/logs/restor
 
 ---
 ### Vollständiges Restore_backup-Skript
-´´´
+```bash
 #!/bin/bash
 set -euo pipefail
 
@@ -253,8 +253,7 @@ echo "Stelle Backup in Datenbank wieder her ..."
 psql -U jukrauss -d db_sswem -f "${LOCAL_DIR}/restore.sql"
 
 echo "Wiederherstellung abgeschlossen."
-
-´´´
+```
 
 
 ---
