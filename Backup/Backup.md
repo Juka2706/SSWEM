@@ -212,7 +212,7 @@ Die SQL-Datei wird mit `psql` in die Datenbank `db_sswem` eingespielt.
 Alle Aktionen (inkl. Fehler) werden in eine Logdatei geschrieben: `~/logs/restore_<timestamp>.log`
 
 ---
-### Vollständiges Restore_backup-Skript
+### Vollständiges restore-backup-Skript
 ```bash
 #!/bin/bash
 set -euo pipefail
