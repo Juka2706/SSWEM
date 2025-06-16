@@ -79,7 +79,7 @@ Pfad: `/home/jukrauss/.pgpass`
 Inhalt (eine Zeile):
 
 ```
-localhost:5432:db_sswem:jukrauss:52IXgFPpj8EPoXuuofIqkdZY68UmjH3hatdExygU1ytIH4PKYY8bJtFLZkN2Q7Jg
+localhost:5432:db_sswem:jukrauss:Passwort_DB
 ```
 
 Rechte setzen:
