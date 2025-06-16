@@ -187,3 +187,41 @@ find "$BACKUP_DIR" -type f -name "*.gpg" -mtime +7 -exec rm {} \;
 
 echo "$(date): Backup erfolgreich abgeschlossen" >> "$LOGFILE"
 ```
+
+## 🔄 Wiederherstellungsprozess – Automatisiert
+
+Der Wiederherstellungsprozess läuft auf VM1 ab und besteht aus den folgenden Schritten:
+
+### 1. Übergabe des Dateinamens
+
+Der Benutzer gibt den Namen der `.sql.gpg`-Datei als Argument beim Start des Restore-Skripts an.
+
+### 2. Vorbereitende Bereinigung
+
+Falls die Tabelle `testdata` bereits in der Ziel-Datenbank vorhanden ist, wird sie automatisch gelöscht (`DROP TABLE IF EXISTS`), um Konflikte zu vermeiden.
+
+### 3. SCP-Download vom Zielserver (VM2)
+
+Die verschlüsselte Datei wird per `scp` über SSH von VM2 nach VM1 in das Backup-Verzeichnis geladen (`~/backups/pgsql/`).
+
+### 4. Entschlüsselung mit GPG
+
+Die `.sql.gpg`-Datei wird symmetrisch mit dem bekannten Passwort entschlüsselt und als `restore.sql` gespeichert.
+
+### 5. Einspielen in die PostgreSQL-Datenbank
+
+Die SQL-Datei wird mit `psql` in die Datenbank `db_sswem` eingespielt.
+
+### 6. Logging
+
+Alle Aktionen (inkl. Fehler) werden in eine Logdatei geschrieben: `~/logs/restore_<timestamp>.log`
+
+---
+
+### 📄 Beispielaufruf:
+
+```bash
+./restore_pgsql_backup_with_drop.sh db_sswem_backup_20250616144638.sql.gpg
+```
+
+Diese Datei muss zuvor via `rsync` oder manuell auf VM2 erzeugt worden sein.
