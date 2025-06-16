@@ -95,7 +95,7 @@ def two_factor():
         user = get_user(session.get("username"))
         if pyotp.TOTP(user[2]).verify(code):
             return render_template("success.html")  # statt Rückgabe als Text
-        return "Ungültiger Code"
+        return render_template("2fa_invalid.html")
     return render_template("2fa.html")
 
 

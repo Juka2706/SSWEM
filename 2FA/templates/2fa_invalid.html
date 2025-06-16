@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentifizierung fehlgeschlagen</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .error-container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        a.button {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="error-container">
+    <h2>Authentifizierung fehlgeschlagen</h2>
+    <p>Der eingegebene Zwei-Faktor-Code war ungültig. Bitte versuche es erneut.</p>
+    <a class="button" href="{{ url_for('two_factor') }}">Zurück zur 2FA-Eingabe</a>
+</div>
+</body>
+</html>
