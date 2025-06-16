@@ -121,11 +121,6 @@ fi
 
 ---
 
-## 📘 Lizenzhinweis
-
-Dieses Backup-System darf frei genutzt, angepasst und weitergegeben werden.  
-Es erfolgt **keine Gewährleistung oder Haftung**.
-
 ---
 
 ## ✅ Status der Umsetzung (nach Aufgabenstellung)
