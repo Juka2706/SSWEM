@@ -121,8 +121,6 @@ fi
 
 ---
 
----
-
 ## ✅ Status der Umsetzung (nach Aufgabenstellung)
 
 | Anforderung                        | Erfüllt |
