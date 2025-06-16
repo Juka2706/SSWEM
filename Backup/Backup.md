@@ -90,22 +90,6 @@ chmod 600 ~/.pgpass
 
 ---
 
-## 🔁 Wiederherstellung eines Backups
-
-1. Datei auf VM2 entschlüsseln:
-
-```bash
-gpg -d db_sswem_backup_<DATUM>.sql.gpg > restore.sql
-```
-
-2. In PostgreSQL importieren:
-
-```bash
-psql -U jukrauss -d db_sswem -f restore.sql
-```
-
----
-
 ## 🧪 Speicherplatzprüfung im Skript
 
 Vor dem Dump prüft das Skript, ob mindestens 50 MB verfügbar sind:
