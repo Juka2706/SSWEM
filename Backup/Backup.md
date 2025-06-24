@@ -13,6 +13,8 @@
 
 ## 🔁 Backup-Ablauf
 
+Auf VM1, das Programm backup_pgsql.sh, starten
+
 ### 1. PostgreSQL Dump mit `pg_dump`
 
 Dump der Datenbank `db_sswem` erfolgt lokal auf VM1 unter Benutzer `jukrauss`.  
@@ -168,6 +170,8 @@ echo "$(date): Backup erfolgreich abgeschlossen" >> "$LOGFILE"
 ```
 
 ## 🔄 Wiederherstellungsprozess – Automatisiert
+
+Auf VM1, das Programm restore_pgsql_backup_argument.sh, starten
 
 Der Wiederherstellungsprozess läuft auf VM1 ab und besteht aus den folgenden Schritten:
 
