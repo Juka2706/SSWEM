@@ -171,7 +171,7 @@ echo "$(date): Backup erfolgreich abgeschlossen" >> "$LOGFILE"
 
 ## 🔄 Wiederherstellungsprozess – Automatisiert
 
-Auf VM1, das Programm restore_pgsql_backup_argument.sh, starten
+Auf VM1, das Programm restore_pgsql_backup_argument.sh, starten. Beim prompt, de Namen der gewünschten Backupdatei als Argument mit übergeben!
 
 Der Wiederherstellungsprozess läuft auf VM1 ab und besteht aus den folgenden Schritten:
 
