@@ -201,7 +201,7 @@ Alle Aktionen (inkl. Fehler) werden in eine Logdatei geschrieben: `~/logs/restor
 #!/bin/bash
 set -euo pipefail
 
-# === Argumentprüfung ===
+# Argumentprüfung
 BACKUP_FILE_REMOTE="${1:-}"
 if [[ -z "$BACKUP_FILE_REMOTE" ]]; then
   echo "Error: Bitte den Dateinamen der Backup-Datei als Argument angeben."
@@ -209,7 +209,7 @@ if [[ -z "$BACKUP_FILE_REMOTE" ]]; then
   exit 1
 fi
 
-# === Konfiguration ===
+# Konfiguration
 REMOTE_USER="jukrauss"
 REMOTE_HOST="193.196.52.126"
 REMOTE_PATH="/home/jukrauss/backups/pgsql"
@@ -217,22 +217,22 @@ LOCAL_DIR="/home/jukrauss/backups/pgsql"
 SSH_KEY="/home/jukrauss/.ssh/id_rsa_vm1_openssh"
 GPG_PASSPHRASE="lusty-skinhead-manhood-steadily-property-spree"
 
-# === Zielordner prüfen/anlegen ===
+# Zielordner prüfen/anlegen
 mkdir -p "$LOCAL_DIR"
 
-# === 0. Vorbereitend: Bestehende Tabelle löschen, falls vorhanden ===
+# Bestehende Tabelle löschen
 echo "Entferne vorhandene Tabelle testdata (falls vorhanden) ..."
 psql -U jukrauss -d db_sswem -c "DROP TABLE IF EXISTS testdata CASCADE;"
 
-# === 1. Datei holen ===
+# Datei holen
 echo "Lade Backup von ${REMOTE_HOST} ..."
 scp -i "$SSH_KEY" "${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}/${BACKUP_FILE_REMOTE}" "${LOCAL_DIR}/"
 
-# === 2. Entschlüsseln ===
+# Entschlüsseln
 echo "Entschlüssle Backup ..."
 gpg --batch --yes --passphrase "$GPG_PASSPHRASE" -d "${LOCAL_DIR}/${BACKUP_FILE_REMOTE}" > "${LOCAL_DIR}/restore.sql"
 
-# === 3. In Datenbank einspielen ===
+# In Datenbank einspielen
 echo "Stelle Backup in Datenbank wieder her ..."
 psql -U jukrauss -d db_sswem -f "${LOCAL_DIR}/restore.sql"
 
