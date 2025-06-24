@@ -107,17 +107,6 @@ fi
 
 ---
 
-## ✅ Status der Umsetzung (nach Aufgabenstellung)
-
-| Anforderung                        | Erfüllt |
-|-----------------------------------|---------|
-| Vollständige Automatisierung      | ✅      |
-| GPG-verschlüsselte Speicherung    | ✅      |
-| Verschlüsselter Transport (SSH)   | ✅      |
-| Zwei VMs getrennt genutzt         | ✅      |
-| Fehlerbehandlung und Logging      | ✅      |
-| Speicherplatz-Fallback            | ✅      |
-
 ## 📜 Vollständiges Backup-Skript (`backup_pgsql.sh`)
 
 ```bash
